@@ -1,0 +1,92 @@
+close all
+clear all
+
+% Question 1 (a)
+a = [0 1 2 3 4 5 6 7 8 9 10]
+
+b = [0.1 : 0.1 : 20]
+
+c = [1 2; 3 4]
+
+d = eye(10,10)
+
+% Question 1 (b)
+d = rand(3,3)
+
+id = inv(d)
+
+d * id 
+
+% Question 2
+t = [0 : 0.001 : 0.999];
+s3 = sin(2 * pi * t * 3);
+
+c3 = cos(2 * pi * t * 3);
+
+s4 = sin(2 * pi * t * 4);
+
+c4 = cos(2 * pi * t * 4);
+
+for i = -2 : delTrap : 0
+        area = area + (abs(i)*2+ (abs(i)-delTrap)*2)*delTrap /2;
+end
+
+
+
+
+s3 * s3.'
+c3 * c3.'
+s3 * c3.'
+s4 * s4.'
+c4 * c4.'
+s4 * c4.'
+s3 * s4.'
+c3 * c4.'
+s3 * c4.'
+
+
+figure
+subplot(2,2,1), plot(s3)
+subplot(2,2,2), plot(c3)
+subplot(2,2,3), plot(s4)
+subplot(2,2,4), plot(c4)
+
+print -djpeg Q2.jpg
+
+
+% Question 3
+
+for loop =  1 : 4
+    t   = 0 : 0.001 : 0.999;
+    s   = zeros(size(t));
+    a   = rand(1,5) .* 5;
+    phi = rand(1,5) .* pi;
+    for i = 1 : 5
+        f = i*2;
+        s = s + a(i)*cos(2*pi*f*t + phi(i));
+    end
+    subplot(4,1,loop), plot(s);
+end
+
+
+% Question 4
+
+area    = 0;
+nTrap   = 10000;
+delTrap = 4/nTrap;
+
+for i = -2 : delTrap : 0
+    area = area + (abs(i)*2+ (abs(i)-delTrap)*2)*delTrap /2;
+end
+
+for i = 0 : delTrap : 2-delTrap
+    area = area + (i*3+ (i+delTrap)*3)*delTrap /2;
+end
+
+disp('integration result is :')
+area
+
+
+
+
+
